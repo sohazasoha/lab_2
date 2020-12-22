@@ -6,12 +6,15 @@ genre_input = input('Какой жанр игр Вас интересует?'
                     '(например: action)\n')
 genre_in = [genre.lstrip().capitalize() for genre in genre_input.split(',')]
 category_input = input('В игры какой категории вы хотите поиграть?\n')
-category_in = [category.lstrip().title() for category in category_input.split(',')]
+category_in = [category.lstrip().title() for category in
+               category_input.split(',')]
 developer_input = input('Игры какого разработчика Вас интересуют?\n')
-developer_in = [developer.lstrip().title() for developer in developer_input.split(',')]
+developer_in = [developer.lstrip().title() for developer in
+                developer_input.split(',')]
 platform_input = input('Для какой платформы ищете игру?'
                        '(например: Windows)\n')
-platform_in = [platform.lstrip().lower() for platform in platform_input.split(',')]
+platform_in = [platform.lstrip().lower() for platform in
+               platform_input.split(',')]
 year = input('Какой год выхода Вас интересует? '
              '(Можно ввести промежуток, например: 2018-2020)\n')
 cost = input('Выберите допустимую цену игры в долларах (используйте < или >)\n')
@@ -24,15 +27,18 @@ def genre_check(genre_list):
 
 
 def category_check(category_list):
-    return any(category in category_list for category in category_in) or (category_in == [''])
+    return any(category in category_list for category in category_in)\
+           or (category_in == [''])
 
 
 def developer_check(developer_list):
-    return any(developer in developer_list for developer in developer_in) or (developer_in == [''])
+    return any(developer in developer_list for developer in developer_in)\
+           or (developer_in == [''])
 
 
 def platform_check(platform_list):
-    return any(platform in platform_list for platform in platform_in) or (platform_in == [''])
+    return any(platform in platform_list for platform in platform_in)\
+           or (platform_in == [''])
 
 
 def year_check(year_list, year_in=year):
@@ -43,21 +49,22 @@ def year_check(year_list, year_in=year):
         return (year_list == year_in) or (year_in == '')
 
 
-def cost_check(cost_list, cost_in=cost):
-    if cost_in == '':
+def cost_check(cost_list):
+    if cost == '':
         return True
-    elif cost_in[0] == '<':
-        k = float(re.search(r'[\d.]+', cost_in)[0])
+    elif cost[0] == '<':
+        k = float(re.search(r'[\d.]+', cost)[0])
         return cost_list <= k
-    elif cost_in[0] == '>':
-        k = float(re.search(r'[\d.]+', cost_in)[0])
+    elif cost[0] == '>':
+        k = float(re.search(r'[\d.]+', cost)[0])
         return cost_list >= k
     else:
-        return cost_in == cost_list
+        return cost == cost_list
 
 
 def ratings_check(ratings_list):
-    return ((ratings == 'да') and (ratings_list[0] > ratings_list[1])) or (ratings == '')
+    return ((ratings == 'да') and (ratings_list[0] > ratings_list[1]))\
+           or (ratings == '')
 
 
 with open('steam.csv', encoding='utf-8') as f, \
